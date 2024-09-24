@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuHome"
+        android:enabled="true"
+        android:icon="@drawable/home_selected"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/menuTop"
+        android:enabled="true"
+        android:icon="@drawable/top_selected"
+        android:title="@string/top"/>
+
+    <item
+        android:id="@+id/menuMediaLibrary"
+        android:enabled="true"
+        android:icon="@drawable/library_music_selected"
+        android:title="@string/media_library" />
+
+    <item
+        android:id="@+id/menuPremium"
+        android:enabled="true"
+        android:icon="@drawable/shopping_cart_selected"
+        android:title="@string/premium" />
+
+</menu>
