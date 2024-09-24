@@ -8,7 +8,7 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/menuTop"
+        android:id="@+id/menuCharter"
         android:enabled="true"
         android:icon="@drawable/top_selected"
         android:title="@string/top"/>
