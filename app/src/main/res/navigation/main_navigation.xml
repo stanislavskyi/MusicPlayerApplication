@@ -10,4 +10,10 @@
         android:name="com.hfad.musicplayerapplication.presentation.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/charterFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.CharterFragment"
+        android:label="fragment_charter"
+        tools:layout="@layout/fragment_charter" />
 </navigation>

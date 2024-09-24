@@ -5,13 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-
-import androidx.paging.PagingDataAdapter
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.presentation.paging.Track
+import com.squareup.picasso.Picasso
 
 class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {

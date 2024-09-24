@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: TrackViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,21 +59,5 @@ class HomeFragment : Fragment() {
         )
         recyclerViewCategory.adapter = CategoryAdapter(items)
 
-
-        val recyclerViewTopMusic = view.findViewById<RecyclerView>(R.id.recyclerViewTopMusic)
-        recyclerViewTopMusic.layoutManager = LinearLayoutManager(
-            requireContext(),
-            LinearLayoutManager.VERTICAL,
-            false
-        )
-
-        val trackAdapter = TrackAdapter()
-        recyclerViewTopMusic.adapter = trackAdapter
-
-        lifecycleScope.launch {
-            viewModel.tracks.collectLatest { pagingData ->
-                trackAdapter.submitData(pagingData)
-            }
-        }
     }
 }
