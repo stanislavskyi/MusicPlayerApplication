@@ -35,4 +35,10 @@
         android:name="com.hfad.musicplayerapplication.presentation.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" />
 </navigation>

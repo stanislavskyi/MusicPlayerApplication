@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.menuMediaLibrary -> {
+                    navController.navigate(R.id.libraryFragment)
+                    true
+                }
+
                 else -> {
                     false
                 }

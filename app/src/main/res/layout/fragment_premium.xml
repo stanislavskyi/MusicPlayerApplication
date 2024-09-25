@@ -123,7 +123,7 @@
             android:text="Доступные планы" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/premiumIndividual"
+            android:id="@+id/premiumIndividual12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -136,7 +136,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/textView4112"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Индивидуальная подписка"
@@ -149,41 +149,41 @@
 
 
                 <TextView
-                    android:id="@+id/textView52"
+                    android:id="@+id/textView5212"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="2.99 $ в месяц"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView41" />
+                    app:layout_constraintTop_toBottomOf="@id/textView4112" />
 
                 <View
-                    android:id="@+id/view1"
+                    android:id="@+id/view112"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/darker_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView52" />
+                    app:layout_constraintTop_toBottomOf="@id/textView5212" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/button12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Купить Premium для одного"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+                    app:layout_constraintTop_toBottomOf="@+id/view112" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/premiumIndividual"
+            android:id="@+id/premiumIndividual13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -197,7 +197,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/textView4113"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Premium для двоих"
@@ -210,40 +210,40 @@
 
 
                 <TextView
-                    android:id="@+id/textView52"
+                    android:id="@+id/textView5213"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="4.99 $ в месяц"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView41" />
+                    app:layout_constraintTop_toBottomOf="@id/textView4113" />
 
                 <View
-                    android:id="@+id/view1"
+                    android:id="@+id/view113"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/darker_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView52" />
+                    app:layout_constraintTop_toBottomOf="@id/textView5213" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/button13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Купить Premium для двоих"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+                    app:layout_constraintTop_toBottomOf="@+id/view113" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/premiumIndividual"
+            android:id="@+id/premiumIndividual14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -257,7 +257,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/textView4114"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Premium для семьи"
@@ -270,34 +270,34 @@
 
 
                 <TextView
-                    android:id="@+id/textView52"
+                    android:id="@+id/textView5214"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="7.99 $ в месяц"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView41" />
+                    app:layout_constraintTop_toBottomOf="@id/textView4114" />
 
                 <View
-                    android:id="@+id/view1"
+                    android:id="@+id/view114"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/darker_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView52" />
+                    app:layout_constraintTop_toBottomOf="@id/textView5214" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/button14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Купить Premium для семьи"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+                    app:layout_constraintTop_toBottomOf="@+id/view114" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
