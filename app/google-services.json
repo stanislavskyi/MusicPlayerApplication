@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "591166091538",
+    "project_id": "musicplayerapplication-be7c8",
+    "storage_bucket": "musicplayerapplication-be7c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591166091538:android:8d1144e8cc127d483ac3cb",
+        "android_client_info": {
+          "package_name": "com.hfad.musicplayerapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCss70lGaQAFJIAWdE3MmEN0CqHH2IufIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
