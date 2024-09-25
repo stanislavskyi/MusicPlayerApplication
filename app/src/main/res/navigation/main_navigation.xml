@@ -16,4 +16,17 @@
         android:name="com.hfad.musicplayerapplication.presentation.CharterFragment"
         android:label="fragment_charter"
         tools:layout="@layout/fragment_charter" />
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/premiumFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.PremiumFragment"
+        android:label="fragment_premium"
+        tools:layout="@layout/fragment_premium" />
+
 </navigation>
