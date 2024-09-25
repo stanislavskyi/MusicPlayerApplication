@@ -17,11 +17,6 @@
         android:label="fragment_charter"
         tools:layout="@layout/fragment_charter" />
 
-    <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
 
     <fragment
         android:id="@+id/premiumFragment"
@@ -29,4 +24,15 @@
         android:label="fragment_premium"
         tools:layout="@layout/fragment_premium" />
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>

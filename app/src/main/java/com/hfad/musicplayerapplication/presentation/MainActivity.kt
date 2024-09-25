@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.account -> {
                     topNavigation.visibility = View.GONE
                     bottomNavigation.visibility = View.GONE
-                    navController.navigate(R.id.accountFragment)
+                    navController.navigate(R.id.registerFragment)
                     true
                 }
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.accountFragment -> {
+                R.id.registerFragment -> {
                     topNavigation.visibility = View.INVISIBLE
                     bottomNavigation.visibility = View.INVISIBLE
                 }

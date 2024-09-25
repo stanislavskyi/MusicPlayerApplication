@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".presentation.AccountFragment">
+    tools:context=".RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -42,11 +42,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Register"
+        android:text="Login"
         style="@style/Widget.Material3.Button" />
 
     <LinearLayout
@@ -57,17 +57,17 @@
         android:layout_marginTop="8dp">
 
         <TextView
-            android:id="@+id/loginTextView"
+            android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login here"
+            android:text="Register here"
             android:gravity="center" />
 
         <ImageView
             android:id="@+id/registerImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/login_24px"
+            app:srcCompat="@drawable/how_to_reg_24px"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 </LinearLayout>
