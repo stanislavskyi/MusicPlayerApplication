@@ -10,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.musicplayerapplication.R
@@ -45,9 +47,10 @@ class LibraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         musicRecyclerView = view.findViewById(R.id.musicRecyclerView)
-        musicAdapter = MusicAdapter()
+        musicAdapter = MusicAdapter { item ->
+            onItemClicked(item)
+        }
         musicRecyclerView.layoutManager = GridLayoutManager(
             requireContext(),
             3
@@ -76,11 +79,20 @@ class LibraryFragment : Fragment() {
             bitmap = null
         }
 
-        musicList.add(Audio(title, bitmap))
+        val audioItem = Audio(title, bitmap, uri.toString())
+        musicList.add(audioItem)
         musicAdapter.submitList(musicList.toList())
 
         retriever.release()
 
+    }
+
+    private fun onItemClicked(item: Audio) {
+        Toast.makeText(requireContext(), "Clicked: ${item.uri}", Toast.LENGTH_SHORT).show()
+        if (item.uri != null){
+            val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri, bitmap = item.imageLong!!, title = item.title!!)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
