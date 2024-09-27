@@ -47,7 +47,8 @@ class LoginFragment : Fragment() {
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
 
-                        findNavController().navigate(R.id.homeFragment)
+                        findNavController().navigate(R.id.accoutnFragment)
+                        //findNavController().navigate(R.id.homeFragment)
                     } else {
                         binding.emailEditTextLayout.error = "Login or password failed"
                         binding.passwordEditTextLayout.error = "Login or password failed"

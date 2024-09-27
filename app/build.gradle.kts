@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,6 +66,8 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.1")
+
+    implementation("com.google.android.material:material:1.9.0")
 
 
 }

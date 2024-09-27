@@ -62,8 +62,12 @@
         <argument
             android:name="title"
             app:argType="string" />
-
-
     </fragment>
+
+    <fragment
+        android:id="@+id/accoutnFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
 
 </navigation>
