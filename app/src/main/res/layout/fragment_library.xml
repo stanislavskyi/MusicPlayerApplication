@@ -1,19 +1,59 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".presentation.LibraryFragment">
 
-    <Button
-        android:id="@+id/loadMusicButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Load Music" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/musicRecyclerView"
+    <!-- Прогресс-бар по центру экрана -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_marginEnd="96dp"
+        android:layout_marginStart="96dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/loadMusicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Load Music" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/musicRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonSheet"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="bottom|end"
+            android:src="@android:drawable/ic_input_add" />
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:id="@+id/bottomSheet"
+            android:layout_width="match_parent"
+            app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+    </LinearLayout>
+
+
+
+
+</FrameLayout>
