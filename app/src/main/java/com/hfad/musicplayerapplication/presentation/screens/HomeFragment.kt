@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
@@ -16,14 +14,9 @@ import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.domain.Carousel
+import com.hfad.musicplayerapplication.domain.entity.Carousel
 import com.hfad.musicplayerapplication.presentation.adapters.CarouselAdapter
 import com.hfad.musicplayerapplication.presentation.adapters.CategoryAdapter
-import com.hfad.musicplayerapplication.presentation.adapters.TrackAdapter
-import com.hfad.musicplayerapplication.presentation.viewmodels.TrackViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 

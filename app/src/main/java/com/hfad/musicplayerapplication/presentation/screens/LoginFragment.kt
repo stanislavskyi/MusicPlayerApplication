@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentLoginBinding
+import com.hfad.musicplayerapplication.presentation.viewmodels.LoginViewModel
+import com.hfad.musicplayerapplication.presentation.viewmodels.PremiumViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +40,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.registerFragment)
         }
 
-        val auth = FirebaseAuth.getInstance()
+        //val auth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
@@ -42,18 +48,26 @@ class LoginFragment : Fragment() {
 
             passwordAndEmailTextChangedListener()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
 
-                        findNavController().navigate(R.id.accoutnFragment)
-                        //findNavController().navigate(R.id.homeFragment)
-                    } else {
-                        binding.emailEditTextLayout.error = "Login or password failed"
-                        binding.passwordEditTextLayout.error = "Login or password failed"
-                    }
-                }
+            viewModel.login(email, password, {
+                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.accoutnFragment)
+            }, { errorMessage ->
+                binding.emailEditTextLayout.error = errorMessage
+                binding.passwordEditTextLayout.error = errorMessage
+            })
+//            auth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(requireActivity()) { task ->
+//                    if (task.isSuccessful) {
+//                        Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+//
+//                        findNavController().navigate(R.id.accoutnFragment)
+//                        //findNavController().navigate(R.id.homeFragment)
+//                    } else {
+//                        binding.emailEditTextLayout.error = "Login or password failed"
+//                        binding.passwordEditTextLayout.error = "Login or password failed"
+//                    }
+//                }
         }
 
     }
@@ -73,5 +87,4 @@ class LoginFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

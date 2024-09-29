@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.graphics.Bitmap
 import android.media.MediaPlayer

@@ -1,29 +1,27 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentAccountBinding
-import com.hfad.musicplayerapplication.domain.Audio
-import com.hfad.musicplayerapplication.domain.Friend
+import com.hfad.musicplayerapplication.domain.entity.Friend
 import com.hfad.musicplayerapplication.presentation.adapters.FriendsAdapter
+import com.hfad.musicplayerapplication.presentation.viewmodels.AccountViewModel
 
 
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel: AccountViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +49,11 @@ class AccountFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     //Log.d(TAG, "${document.id} => ${document.data}")
-                    list.add(Friend("${document.id}"))
+
+                    val name = document.getString("name") ?: "Unknown"
+
+                    //list.add(Friend("${document.id}"))
+                    list.add(Friend(name))
 
                     friendAdapter.submitList(list)
                     Toast.makeText(requireContext(), "Loaded ${list.size} friends", Toast.LENGTH_SHORT).show()
