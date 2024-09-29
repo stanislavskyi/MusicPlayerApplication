@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.domain.Carousel
+import com.hfad.musicplayerapplication.domain.entity.Carousel
 
 class CarouselAdapter(private val items: List<Carousel>
 ): RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>() {

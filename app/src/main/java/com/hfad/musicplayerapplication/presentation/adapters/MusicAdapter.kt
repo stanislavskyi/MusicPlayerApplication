@@ -1,5 +1,6 @@
 package com.hfad.musicplayerapplication.presentation.adapters
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.domain.Audio
+import com.hfad.musicplayerapplication.domain.entity.Audio
 
 class MusicAdapter(
     private val onItemClicked: (Audio) -> Unit
@@ -46,6 +46,7 @@ class MusicAdapter(
         } else{
             holder.musicTitle.text = "null"
         }
+
 
         if (audio.imageLong != null) {
             holder.preview.setImageBitmap(audio.imageLong)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".presentation.MusicPlayerFragment">
+    tools:context=".presentation.screens.MusicPlayerFragment">
 
     <!-- Обложка альбома -->
     <ImageView
@@ -93,12 +93,12 @@
             android:layout_weight="1"
             android:src="@drawable/skip_next_48px" />
         <ImageButton
-            android:id="@+id/replay_10_24px"
+            android:id="@+id/group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="string/next"
-            android:src="@drawable/replay_10_24px" />
+            android:src="@drawable/group_20px" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

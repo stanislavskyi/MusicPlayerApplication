@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.domain.Friend
+import com.hfad.musicplayerapplication.domain.entity.Friend
 
 class FriendsAdapter(
     private val onItemClicked: (Friend) -> Unit
@@ -24,6 +24,9 @@ class FriendsAdapter(
         val item = getItem(position)
         holder.musicTitle.text = item.name
         holder.bind(item)
+
+        holder.friendAddButton.isEnabled = item.state
+
 
     }
 

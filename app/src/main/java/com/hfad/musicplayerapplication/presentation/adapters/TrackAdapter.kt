@@ -9,7 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.presentation.paging.Track
+import com.hfad.musicplayerapplication.domain.entity.Track
 import com.squareup.picasso.Picasso
 
 class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF_CALLBACK) {
@@ -42,10 +42,10 @@ class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF
         private val duration: TextView = itemView.findViewById(R.id.duration)
         private val preview: ImageView = itemView.findViewById(R.id.preview)
 
-        fun bind(track: Track) {
-            title.text = track.title
-            duration.text = track.title
-            Picasso.get().load("https://e-cdns-images.dzcdn.net/images/cover/${track.md5_image}/250x250.jpg").into(preview)
+        fun bind(trackDto: Track) {
+            title.text = trackDto.title
+            duration.text = trackDto.title
+            Picasso.get().load("https://e-cdns-images.dzcdn.net/images/cover/${trackDto.md5_image}/250x250.jpg").into(preview)
         }
     }
 }
