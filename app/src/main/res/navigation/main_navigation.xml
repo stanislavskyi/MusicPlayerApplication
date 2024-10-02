@@ -7,38 +7,38 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.HomeFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/charterFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.CharterFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.CharterFragment"
         android:label="fragment_charter"
         tools:layout="@layout/fragment_charter" />
 
 
     <fragment
         android:id="@+id/premiumFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.PremiumFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.PremiumFragment"
         android:label="fragment_premium"
         tools:layout="@layout/fragment_premium" />
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.LoginFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.RegisterFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 
     <fragment
         android:id="@+id/libraryFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.LibraryFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.LibraryFragment"
         android:label="fragment_library"
         tools:layout="@layout/fragment_library" >
         <action
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/musicPlayerFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.MusicPlayerFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.MusicPlayerFragment"
         android:label="fragment_music_player"
         tools:layout="@layout/fragment_music_player">
 
@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/accoutnFragment"
-        android:name="com.hfad.musicplayerapplication.presentation.AccountFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.screens.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
 

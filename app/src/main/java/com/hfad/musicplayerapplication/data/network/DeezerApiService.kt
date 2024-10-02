@@ -1,5 +1,6 @@
-package com.hfad.musicplayerapplication.presentation.paging
+package com.hfad.musicplayerapplication.data.network
 
+import com.hfad.musicplayerapplication.data.network.dto.TrackResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

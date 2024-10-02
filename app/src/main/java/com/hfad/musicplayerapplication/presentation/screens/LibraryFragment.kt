@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -17,9 +18,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -27,10 +25,12 @@ import com.google.firebase.storage.ktx.storage
 import com.hfad.musicplayerapplication.MyBottomSheetFragment
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentLibraryBinding
-import com.hfad.musicplayerapplication.domain.Audio
+import com.hfad.musicplayerapplication.domain.entity.Audio
+import com.hfad.musicplayerapplication.presentation.BottomSheetListener
+import com.hfad.musicplayerapplication.presentation.ModalBottomSheet
 import com.hfad.musicplayerapplication.presentation.adapters.MusicAdapter
 
-class LibraryFragment : Fragment() {
+class LibraryFragment : Fragment(), BottomSheetListener {
 
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
@@ -57,8 +57,8 @@ class LibraryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.floatingActionButtonSheet.setOnClickListener {
-            val bottomSheetFragment = MyBottomSheetFragment()
-            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+            val modalBottomSheet = ModalBottomSheet(this)
+            modalBottomSheet.show(childFragmentManager, ModalBottomSheet.TAG)
         }
 
         musicRecyclerView = view.findViewById(R.id.musicRecyclerView)
@@ -71,10 +71,19 @@ class LibraryFragment : Fragment() {
         )
         musicRecyclerView.adapter = musicAdapter
 
-        val loadMusicButton: Button = view.findViewById(R.id.loadMusicButton)
-        loadMusicButton.setOnClickListener {
-            openFilePicker.launch(arrayOf("audio/*"))
-        }
+//        val loadMusicButton: Button = view.findViewById(R.id.loadMusicButton)
+//        loadMusicButton.setOnClickListener {
+//            openFilePicker.launch(arrayOf("audio/*"))
+//        }
+
+//        val sheetButton: ImageView = view.findViewById(R.id.linearBottomSheet)
+//        sheetButton.setOnClickListener {
+//            openFilePicker.launch(arrayOf("audio/*"))
+//        }
+    }
+
+    override fun onUploadTrackClicked() {
+        openFilePicker.launch(arrayOf("audio/*"))
     }
 
     private fun displayAudioInfo(uri: Uri) {
@@ -102,7 +111,6 @@ class LibraryFragment : Fragment() {
     }
 
     private fun onItemClicked(item: Audio) {
-        //Toast.makeText(requireContext(), "Clicked: ${item.uri}", Toast.LENGTH_SHORT).show()
         val storageRef = Firebase.storage.reference
         val fileRef = storageRef.child("uploads/${item.uri!!.lastPathSegment}")
         val uploadTask = fileRef.putFile(item.uri)
@@ -156,4 +164,6 @@ class LibraryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

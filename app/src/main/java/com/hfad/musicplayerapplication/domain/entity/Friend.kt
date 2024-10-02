@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.domain
+package com.hfad.musicplayerapplication.domain.entity
 
 data class Friend(
     val name: String,

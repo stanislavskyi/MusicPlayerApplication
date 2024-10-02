@@ -1,24 +1,26 @@
-package com.hfad.musicplayerapplication.presentation
+package com.hfad.musicplayerapplication.presentation.screens
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentPremiumBinding
-import com.hfad.musicplayerapplication.databinding.FragmentRegisterBinding
+import com.hfad.musicplayerapplication.presentation.viewmodels.PremiumViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PremiumFragment : Fragment() {
 
     private var _binding: FragmentPremiumBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: PremiumViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,17 +34,9 @@ class PremiumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val db = Firebase.firestore
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-
         binding.button12.setOnClickListener {
-            val user = hashMapOf(
-                "isPremium" to true,
-                "subscriptionDate" to FieldValue.serverTimestamp()
-            )
-            userId?.let {
-                db.collection("users").document(it).set(user, SetOptions.merge())
-            }
+
+            viewModel.updateUserPremiumStatus()
         }
     }
 

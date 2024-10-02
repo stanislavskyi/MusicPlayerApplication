@@ -8,9 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.hfad.musicplayerapplication.R
-import com.hfad.musicplayerapplication.domain.Audio
+import com.hfad.musicplayerapplication.domain.entity.Audio
 
 class MusicAdapter(
     private val onItemClicked: (Audio) -> Unit

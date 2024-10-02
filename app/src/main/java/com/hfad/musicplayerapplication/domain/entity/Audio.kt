@@ -1,4 +1,4 @@
-package com.hfad.musicplayerapplication.domain
+package com.hfad.musicplayerapplication.domain.entity
 
 import android.graphics.Bitmap
 import android.net.Uri

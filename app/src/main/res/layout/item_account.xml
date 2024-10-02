@@ -5,21 +5,11 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/friendTitle"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/nameFriend"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Имя вашего друга (имя друга)"
@@ -28,9 +18,8 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/friendAddButton"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@id/friendTitle"
-        app:layout_constraintTop_toTopOf="@id/friendTitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/friendAddButton"
@@ -38,7 +27,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/more_vert_24px"
         android:layout_marginStart="8dp"
-        android:text="Добавить в друзья"
+        android:text="Добавить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
