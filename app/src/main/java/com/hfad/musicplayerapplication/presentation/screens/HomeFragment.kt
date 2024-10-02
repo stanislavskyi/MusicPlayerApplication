@@ -2,15 +2,16 @@ package com.hfad.musicplayerapplication.presentation.screens
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hfad.musicplayerapplication.R
@@ -58,7 +59,9 @@ class HomeFragment : Fragment() {
         )
         recyclerViewCategory.adapter = CategoryAdapter(items)
 
-        listenForMusicUpdates("LJ1rNv7LOycbg7TCmgQ6qb2BVSj1")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        listenForMusicUpdates(userId.toString())
 
     }
 

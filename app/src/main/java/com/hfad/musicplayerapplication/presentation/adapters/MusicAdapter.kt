@@ -1,5 +1,6 @@
 package com.hfad.musicplayerapplication.presentation.adapters
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,7 @@ class MusicAdapter(
         } else{
             holder.musicTitle.text = "null"
         }
+
 
         if (audio.imageLong != null) {
             holder.preview.setImageBitmap(audio.imageLong)

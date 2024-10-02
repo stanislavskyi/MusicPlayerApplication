@@ -16,13 +16,13 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.hfad.musicplayerapplication.MyBottomSheetFragment
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentLibraryBinding
 import com.hfad.musicplayerapplication.domain.entity.Audio
@@ -44,6 +44,8 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         }
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +54,7 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         val view = binding.root
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,16 +73,6 @@ class LibraryFragment : Fragment(), BottomSheetListener {
             3
         )
         musicRecyclerView.adapter = musicAdapter
-
-//        val loadMusicButton: Button = view.findViewById(R.id.loadMusicButton)
-//        loadMusicButton.setOnClickListener {
-//            openFilePicker.launch(arrayOf("audio/*"))
-//        }
-
-//        val sheetButton: ImageView = view.findViewById(R.id.linearBottomSheet)
-//        sheetButton.setOnClickListener {
-//            openFilePicker.launch(arrayOf("audio/*"))
-//        }
     }
 
     override fun onUploadTrackClicked() {
@@ -93,13 +86,14 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         val title = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
         val albumArt = retriever.embeddedPicture
 
+        Log.d("MAIN_TAG", "$albumArt")
+
         var bitmap: Bitmap?
 
-        Log.d("MAIN_TAG", "$albumArt")
-        if (albumArt != null){
+        if (albumArt != null) {
             bitmap = BitmapFactory.decodeByteArray(albumArt, 0, albumArt.size)
-        } else{
-            bitmap = null
+        } else {
+            bitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.downloading_20px)
         }
 
         val audioItem = Audio(title, bitmap, uri)
@@ -111,59 +105,28 @@ class LibraryFragment : Fragment(), BottomSheetListener {
     }
 
     private fun onItemClicked(item: Audio) {
-        val storageRef = Firebase.storage.reference
-        val fileRef = storageRef.child("uploads/${item.uri!!.lastPathSegment}")
-        val uploadTask = fileRef.putFile(item.uri)
-
-
-        val progressBar: ProgressBar = view?.findViewById(R.id.progressBar) ?: return
-        progressBar.visibility = View.VISIBLE
-
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-        uploadTask.addOnFailureListener {
-            Toast.makeText(requireContext(), "failure", Toast.LENGTH_SHORT).show()
-            progressBar.visibility = View.GONE
-        }.addOnSuccessListener { taskSnapshot ->
-            Toast.makeText(requireContext(), "file success upload", Toast.LENGTH_SHORT).show()
-            progressBar.visibility = View.GONE
-
-            fileRef.downloadUrl.addOnSuccessListener { uri ->
-                saveMusicUrl(userId!!, uri.toString())
-                Toast.makeText(requireContext(), "USERID AND URI success upload", Toast.LENGTH_SHORT).show()
-            }
-
-        }.addOnProgressListener { taskSnapshot ->
-            val progress = (100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount)
-            progressBar.progress = progress.toInt()
-        }
-
         if (item.uri != null){
-            //val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri, bitmap = item.imageLong!!, title = item.title!!)
-            //findNavController().navigate(action)
-        }
-    }
 
-    private fun saveMusicUrl(userId: String, musicUrl: String) {
-        val db = Firebase.firestore
-        val musicData = hashMapOf(
-            "musicUrl" to musicUrl
-        )
-        //db.collection("users").document(userId)
-            db.collection("users").document("LJ1rNv7LOycbg7TCmgQ6qb2BVSj1")
-            .collection("music").add(musicData)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Music URL saved successfully", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error saving music URL", Toast.LENGTH_SHORT).show()
-            }
+//            if (item.imageLong != null) {
+//                val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(
+//                    mp3 = item.uri,
+//                    bitmap = item.imageLong!!,
+//                    title = item.title!!
+//                )
+//                findNavController().navigate(action)
+//            } else {
+//                Toast.makeText(requireContext(), "Изображение не найдено", Toast.LENGTH_SHORT).show()
+//            }
+
+
+            Log.d("MAIN_TAG", "${item.imageLong}, ${item.uri}, ${item.title}")
+            val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri, bitmap = item.imageLong, title = item.title!!)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

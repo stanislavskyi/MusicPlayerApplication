@@ -55,10 +55,11 @@
 
         <argument
             android:name="mp3"
-            app:argType="string" />
+            app:argType="android.net.Uri" />
         <argument
             android:name="bitmap"
-            app:argType="android.graphics.Bitmap" />
+            app:argType="android.graphics.Bitmap"
+            app:nullable="true" />
         <argument
             android:name="title"
             app:argType="string" />

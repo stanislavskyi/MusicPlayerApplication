@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.registerFragment -> {
+                R.id.musicPlayerFragment -> {
                     topNavigation.visibility = View.INVISIBLE
                     bottomNavigation.visibility = View.INVISIBLE
                 }

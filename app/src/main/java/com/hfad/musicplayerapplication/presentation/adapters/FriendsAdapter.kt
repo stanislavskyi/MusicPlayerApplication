@@ -25,6 +25,9 @@ class FriendsAdapter(
         holder.musicTitle.text = item.name
         holder.bind(item)
 
+        holder.friendAddButton.isEnabled = item.state
+
+
     }
 
     inner class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
