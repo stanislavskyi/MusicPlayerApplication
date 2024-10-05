@@ -41,14 +41,6 @@ class CharterFragment : Fragment() {
                 trackAdapter.submitData(pagingData)
             }
         }
-
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-//                viewModel.tracks.collectLatest {
-//                    trackAdapter.submitData(pagingData = it)
-//                }
-//            }
-//        }
     }
 
     override fun onDestroyView() {
