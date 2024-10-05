@@ -29,12 +29,23 @@
         android:text="Song Title"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintBottom_toTopOf="@+id/artistName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/albumCover" />
 
     <!-- Исполнитель -->
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist Name"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songTitle" />
 
     <!-- Ползунок прогресса -->
     <SeekBar
@@ -44,7 +55,7 @@
         app:layout_constraintBottom_toTopOf="@+id/controlPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
     <!-- Панель управления -->
     <LinearLayout
@@ -53,26 +64,16 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/forward_10_24px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="string/previous"
-
-            android:src="@drawable/forward_10_24px" />
 
         <ImageButton
             android:id="@+id/prevButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="string/play_pause"
-            android:layout_weight="1"
+            android:contentDescription="string/previous"
             android:src="@drawable/skip_previous_48px" />
 
         <ImageButton
@@ -80,8 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="string/next"
-            android:layout_weight="1"
+            android:contentDescription="string/play_pause"
             android:src="@drawable/play_arrow_48px" />
 
         <ImageButton
@@ -90,15 +90,18 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="string/next"
-            android:layout_weight="1"
             android:src="@drawable/skip_next_48px" />
-        <ImageButton
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="string/next"
-            android:src="@drawable/group_20px" />
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="string/share"
+        android:src="@drawable/group_20px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

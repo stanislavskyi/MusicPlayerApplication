@@ -7,13 +7,17 @@ import com.google.firebase.ktx.Firebase
 import com.hfad.musicplayerapplication.data.mapper.TrackMapper
 import com.hfad.musicplayerapplication.data.network.DeezerApiService
 import com.hfad.musicplayerapplication.data.network.RetrofitInstance
+import com.hfad.musicplayerapplication.data.repository.AccountRepositoryImpl
 import com.hfad.musicplayerapplication.data.repository.AuthRepositoryImpl
 import com.hfad.musicplayerapplication.data.repository.TrackRepositoryImpl
 import com.hfad.musicplayerapplication.data.repository.UserRepositoryImpl
+import com.hfad.musicplayerapplication.domain.repository.AccountRepository
 import com.hfad.musicplayerapplication.domain.repository.AuthRepository
 import com.hfad.musicplayerapplication.domain.usecase.GetTracksUseCase
 import com.hfad.musicplayerapplication.domain.repository.TrackRepository
 import com.hfad.musicplayerapplication.domain.repository.UserRepository
+import com.hfad.musicplayerapplication.domain.usecase.GetAllUsersUseCase
+import com.hfad.musicplayerapplication.domain.usecase.GetFriendsUseCase
 import com.hfad.musicplayerapplication.domain.usecase.LoginUseCase
 import com.hfad.musicplayerapplication.domain.usecase.RegisterUseCase
 import com.hfad.musicplayerapplication.domain.usecase.UpdateUserPremiumStatusUseCase
@@ -90,5 +94,20 @@ object AppModule {
     @Provides
     fun provideRegisterUseCase(repository: AuthRepository): RegisterUseCase {
         return RegisterUseCase(repository)
+    }
+
+    @Provides
+    fun provideAccountRepository(auth: FirebaseAuth, firestore: FirebaseFirestore): AccountRepository{
+        return AccountRepositoryImpl(auth = auth, firestore = firestore)
+    }
+
+    @Provides
+    fun provideGetFriendsUseCase(repository: AccountRepository): GetFriendsUseCase{
+        return GetFriendsUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetAllUsersUseCase(repository: AccountRepository): GetAllUsersUseCase{
+        return GetAllUsersUseCase(repository)
     }
 }

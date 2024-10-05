@@ -56,11 +56,6 @@ class MusicPlayerFragment : Fragment() {
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
