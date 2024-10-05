@@ -37,8 +37,6 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //val auth = FirebaseAuth.getInstance()
-
         binding.loginTextView.setOnClickListener{
             findNavController().navigate(R.id.loginFragment)
         }
@@ -60,20 +58,6 @@ class RegisterFragment : Fragment() {
             }, { errorMessage ->
                 binding.emailEditTextLayout.error = errorMessage
             })
-
-
-//            auth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(requireActivity()) { task ->
-//                    if (task.isSuccessful) {
-//                        Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT)
-//                            .show()
-//
-//                        findNavController().navigate(R.id.homeFragment)
-//
-//                    } else {
-//                        binding.emailEditTextLayout.error = "This login already exists"
-//                    }
-//                }
         }
     }
 

@@ -35,7 +35,6 @@ class PremiumFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button12.setOnClickListener {
-
             viewModel.updateUserPremiumStatus()
         }
     }
