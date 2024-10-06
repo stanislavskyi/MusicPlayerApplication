@@ -44,8 +44,6 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         }
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -99,26 +97,12 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         val audioItem = Audio(title, bitmap, uri)
         musicList.add(audioItem)
         musicAdapter.submitList(musicList.toList())
-
         retriever.release()
 
     }
 
     private fun onItemClicked(item: Audio) {
         if (item.uri != null){
-
-//            if (item.imageLong != null) {
-//                val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(
-//                    mp3 = item.uri,
-//                    bitmap = item.imageLong!!,
-//                    title = item.title!!
-//                )
-//                findNavController().navigate(action)
-//            } else {
-//                Toast.makeText(requireContext(), "Изображение не найдено", Toast.LENGTH_SHORT).show()
-//            }
-
-
             Log.d("MAIN_TAG", "${item.imageLong}, ${item.uri}, ${item.title}")
             val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri, bitmap = item.imageLong, title = item.title!!)
             findNavController().navigate(action)

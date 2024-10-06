@@ -2,11 +2,14 @@ package com.hfad.musicplayerapplication.presentation.screens
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
@@ -61,8 +64,35 @@ class HomeFragment : Fragment() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
+//        userId?.let {
+//            checkForMusic(it)
+//        }
+
         listenForMusicUpdates(userId.toString())
 
+    }
+
+    // Метод для проверки наличия музыки в Firestore
+    private fun checkForMusic(userId: String) {
+        val db = Firebase.firestore
+        db.collection("users").document(userId)
+            .collection("music")
+            .get()
+            .addOnSuccessListener { result ->
+                // Если музыка найдена
+                if (!result.isEmpty) {
+                    // Получаем первый найденный трек
+                    val musicUrl = result.first().getString("musicUrl")
+                    musicUrl?.let {
+                        // Переход на MusicPlayerFragment с передачей URL
+                        val action = HomeFragmentDirections.actionHomeFragmentToMusicPlayerFragment(mp3 = it.toUri(), title = "", bitmap = null)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("HomeFragment", "Error checking for music: $e")
+            }
     }
 
     private fun listenForMusicUpdates(userId: String) {
@@ -88,22 +118,6 @@ class HomeFragment : Fragment() {
             }
     }
 
-    private fun getMusicUrl(userId: String, callback: (String) -> Unit) {
-        val db = Firebase.firestore
-        db.collection("users").document(userId)
-            .collection("music").get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val musicUrl = document.getString("musicUrl") ?: ""
-                    callback(musicUrl)
-                }
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error getting music URL", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-
     private fun playMusic(musicUrl: String) {
         mediaPlayer?.release()  // Освобождаем предыдущий MediaPlayer, если он уже воспроизводил музыку
 
@@ -125,6 +139,4 @@ class HomeFragment : Fragment() {
         mediaPlayer?.release()
         mediaPlayer = null
     }
-
-
 }

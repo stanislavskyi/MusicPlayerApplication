@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.hfad.musicplayerapplication.presentation.screens.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_musicPlayerFragment"
+            app:destination="@id/musicPlayerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/charterFragment"
@@ -63,6 +67,9 @@
         <argument
             android:name="title"
             app:argType="string" />
+
+
+
     </fragment>
 
     <fragment
