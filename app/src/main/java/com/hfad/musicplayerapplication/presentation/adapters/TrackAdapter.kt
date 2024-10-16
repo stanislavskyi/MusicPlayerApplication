@@ -38,8 +38,8 @@ class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF
     }
 
     class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val title: TextView = itemView.findViewById(R.id.title)
-        private val duration: TextView = itemView.findViewById(R.id.duration)
+        private val title: TextView = itemView.findViewById(R.id.titleLibrary)
+        private val duration: TextView = itemView.findViewById(R.id.durationLibrary)
         private val preview: ImageView = itemView.findViewById(R.id.preview)
 
         fun bind(trackDto: Track) {

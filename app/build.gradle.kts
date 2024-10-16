@@ -56,6 +56,9 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
+    implementation(libs.firebase.messaging)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -73,5 +76,15 @@ dependencies {
     //Dagger-Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     ksp("com.google.dagger:hilt-compiler:2.51.1")
+
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+
+    // Add the dependencies for the In-App Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-inappmessaging-display:21.0.0")
+    implementation("com.google.firebase:firebase-analytics:22.1.2")
 
 }

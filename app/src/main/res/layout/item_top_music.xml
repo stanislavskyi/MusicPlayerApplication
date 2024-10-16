@@ -1,9 +1,16 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_margin="16dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
 
     <ImageView
         android:id="@+id/preview"
@@ -16,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleLibrary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Название песни"
@@ -28,26 +35,27 @@
 
         app:layout_constraintStart_toEndOf="@id/preview"
         app:layout_constraintTop_toTopOf="@id/preview"
-        app:layout_constraintEnd_toStartOf="@id/iv_like_icon"
+        app:layout_constraintEnd_toStartOf="@id/iv_like_iconLibrary"
         app:layout_constraintHorizontal_bias="0" />
 
-    <TextView
-        android:id="@+id/duration"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Имя исполнителя"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:layout_marginStart="8dp"
+        <TextView
+            android:id="@+id/durationLibrary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Имя исполнителя"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
 
-        app:layout_constraintStart_toEndOf="@id/preview"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintEnd_toStartOf="@id/iv_like_icon" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_like_iconLibrary"
+            app:layout_constraintStart_toEndOf="@id/preview"
+            app:layout_constraintTop_toBottomOf="@id/titleLibrary" />
 
     <ImageView
-        android:id="@+id/iv_like_icon"
+        android:id="@+id/iv_like_iconLibrary"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/more_vert_24px"
@@ -56,4 +64,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

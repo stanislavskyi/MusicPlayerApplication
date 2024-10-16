@@ -1,6 +1,5 @@
 package com.hfad.musicplayerapplication.presentation.adapters
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,8 @@ class MusicAdapter(
 ) : ListAdapter<Audio, MusicAdapter.MusicViewHolder>(MusicDiffCallback()) {
 
     inner class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val musicTitle: TextView = itemView.findViewById(R.id.musicTitle)
+        val musicTitle: TextView = itemView.findViewById(R.id.titleLibrary)
+        val musicAuthor: TextView = itemView.findViewById(R.id.durationLibrary)
         val preview: ImageView = itemView.findViewById(R.id.preview)
 
         fun bind(item: Audio) {
@@ -46,6 +46,7 @@ class MusicAdapter(
         } else{
             holder.musicTitle.text = "null"
         }
+
 
 
         if (audio.imageLong != null) {

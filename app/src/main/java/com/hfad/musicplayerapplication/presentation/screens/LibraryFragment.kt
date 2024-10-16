@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -66,10 +67,7 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         musicAdapter = MusicAdapter { item ->
             onItemClicked(item)
         }
-        musicRecyclerView.layoutManager = GridLayoutManager(
-            requireContext(),
-            3
-        )
+
         musicRecyclerView.adapter = musicAdapter
     }
 

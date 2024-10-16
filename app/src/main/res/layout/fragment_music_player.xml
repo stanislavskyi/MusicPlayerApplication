@@ -8,29 +8,25 @@
     tools:context=".presentation.screens.MusicPlayerFragment">
 
     <!-- Обложка альбома -->
-
-
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/albumCoverCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="string/album_cover"
-        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/songTitle"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintDimensionRatio="1:1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/albumCover"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Название трека -->
+    <!-- Название песни -->
     <TextView
         android:id="@+id/songTitle"
         android:layout_width="wrap_content"
@@ -41,9 +37,9 @@
         app:layout_constraintBottom_toTopOf="@+id/artistName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumCoverCard" />
+        app:layout_constraintTop_toBottomOf="@id/albumCoverCard" />
 
-    <!-- Исполнитель -->
+    <!-- Имя исполнителя -->
     <TextView
         android:id="@+id/artistName"
         android:layout_width="wrap_content"
@@ -54,89 +50,109 @@
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songTitle" />
+        app:layout_constraintTop_toBottomOf="@id/songTitle" />
 
-    <!-- Ползунок прогресса -->
+    <!-- Прогресс-бар -->
     <SeekBar
         android:id="@+id/progressBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/prevButton"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/artistName" />
+        app:layout_constraintTop_toBottomOf="@id/artistName" />
 
+    <!-- Текущее время трека -->
     <TextView
         android:id="@+id/currentTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="00:00"
-        app:layout_constraintBottom_toTopOf="@+id/prevButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
-    <!-- Панель управления -->
+    <!-- Общее время трека -->
     <TextView
         android:id="@+id/totalTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="00:00"
-        app:layout_constraintBottom_toTopOf="@+id/prevButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
-
-    <ImageButton
-        app:layout_constraintHorizontal_chainStyle="spread"
-        android:id="@+id/prevButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="string/previous"
-        android:src="@drawable/skip_previous_48px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="string/play_pause"
-        android:src="@drawable/play_arrow_48px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prevButton"
-        android:visibility="gone"/>
-
-    <ImageButton
-        android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="string/play_pause"
-        android:src="@drawable/pause_48px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prevButton" />
-
-    <ImageButton
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="string/next"
-        android:src="@drawable/skip_next_48px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pauseButton" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/skip_previous_48px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageButtonPause"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButtonPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/pause_48px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageButton2"
+            app:layout_constraintStart_toEndOf="@id/imageButton" />
+        <ImageButton
+            android:id="@+id/imageButtonPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/play_arrow_48px"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageButton2"
+            app:layout_constraintStart_toEndOf="@id/imageButton" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/skip_next_48px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageButtonPause" />
+
+
+    </LinearLayout>
+
 
     <ImageButton
-        android:id="@+id/group"
+        android:id="@+id/imageButtonGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackground"
-        android:contentDescription="string/share"
         android:src="@drawable/group_20px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintStart_toEndOf="@+id/artistName"
+        app:layout_constraintTop_toBottomOf="@+id/songTitle" />
+
+    <!-- Кнопка предыдущего трека -->
+
+
+    <!-- Кнопка "Поделиться" -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
