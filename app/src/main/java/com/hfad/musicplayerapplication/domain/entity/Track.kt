@@ -1,5 +1,9 @@
 package com.hfad.musicplayerapplication.domain.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Track(
     val id: Long,
     val title: String,
@@ -8,4 +12,4 @@ data class Track(
     val preview: String,
     val md5_image: String,
     val cover_xl: String
-)
+): Parcelable

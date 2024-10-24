@@ -1,24 +1,74 @@
 package com.hfad.musicplayerapplication.presentation
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.os.Build
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hfad.musicplayerapplication.R
+import com.hfad.musicplayerapplication.domain.entity.Music
+import com.hfad.musicplayerapplication.presentation.screens.MusicPlayerFragment
+import com.hfad.musicplayerapplication.presentation.services.MiniPlayerFragment
+import com.hfad.musicplayerapplication.presentation.viewmodels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+
+    //private val sharedViewModel: SharedViewModel by viewModels()
+    private lateinit var sharedViewModel: SharedViewModel
+
+    private fun showMiniPlayerFragment(music: Music) {
+
+        sharedViewModel = ViewModelProvider(this@MainActivity)[SharedViewModel::class.java]
+
+        sharedViewModel.updateTrack(music)
+        val existingFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_mini_player)
+        if (existingFragment == null) {
+            val fragment = MiniPlayerFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container_mini_player, fragment)
+                .commit()
+        }
+    }
+
+    private val musicPlayerReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val track = Music(
+                title = intent?.getStringExtra("TRACK_TITLE") ?: "",
+                artist = intent?.getStringExtra("TRACK_ARTIST") ?: "",
+                albumArtUri = Uri.parse(intent?.getStringExtra("TRACK_ALBUM_ART"))
+            )
+            showMiniPlayerFragment(track)
+        }
+    }
+
+    fun showFragment(){
+        supportFragmentManager.beginTransaction()
+            //.setCustomAnimations(R.anim.fragment_fade_in, R.anim.fragment_fade_out)
+            //.addSharedElement(view, "shared_element_container")
+            .replace(R.id.main_container, MusicPlayerFragment())
+            .replace(R.id.fragment_container_mini_player, Fragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        LocalBroadcastManager.getInstance(this)
+            .registerReceiver(musicPlayerReceiver, IntentFilter("MUSIC_PLAYER_ACTION"))
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -27,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val topNavigation: MaterialToolbar = findViewById(R.id.topAppBar)
+
 
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -56,7 +107,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         topNavigation.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.account -> {
@@ -71,47 +121,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.musicPlayerFragment -> {
-//                    topNavigation.visibility = View.INVISIBLE
-//                    bottomNavigation.visibility = View.INVISIBLE
-//                }
-//                else -> {
-//                    bottomNavigation.visibility = View.VISIBLE
-//                    topNavigation.visibility = View.VISIBLE
-//
-//                }
-//            }
-//        }
-    }
-
-    private fun showNotification(){
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel =  NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(notificationChannel)
-        }
-        //(выше) для android 8, начиная включительно с API 26
-
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Title")
-            .setContentText("Text")
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .build()
-
-
-        notificationManager.notify(1, notification)
-    }
-
-    companion object{
-        private const val CHANNEL_ID = "channel_id"
-        private const val CHANNEL_NAME = "channel_name"
     }
 }

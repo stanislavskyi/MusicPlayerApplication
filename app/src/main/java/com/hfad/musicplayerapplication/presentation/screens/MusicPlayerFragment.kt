@@ -1,6 +1,7 @@
 package com.hfad.musicplayerapplication.presentation.screens
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.MaterialContainerTransform
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -32,6 +34,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+
 
 
 class MusicPlayerFragment : Fragment() {
@@ -62,6 +65,7 @@ class MusicPlayerFragment : Fragment() {
         val view = binding.root
         return view
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -195,9 +199,10 @@ class MusicPlayerFragment : Fragment() {
                                 val selectedUser = userList[which]
 
                                 //onItemClicked(selectedUser)
-                                //val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-                                sendTokenToServer(selectedUser)
+                                val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+                                Log.d("currentUser", "${currentUser}")
+                                sendTokenToServer(selectedUser, currentUser!!)
 
                                 Toast.makeText(
                                     requireContext(),
@@ -247,9 +252,9 @@ class MusicPlayerFragment : Fragment() {
     }
 
 
-    private fun sendTokenToServer(userId: String){
+    private fun sendTokenToServer(userId: String, currentUser: String){
         val url = "https://ktor-server-n1ro.onrender.com/save-userId"
-        val body = TokenData(userId =  userId)
+        val body = TokenData(userId =  userId, currentUser = currentUser)
 
         val jsonBody = Gson().toJson(body)
         val requestBody = jsonBody.toRequestBody("application/json".toMediaTypeOrNull())
@@ -345,6 +350,8 @@ class MusicPlayerFragment : Fragment() {
         }
         handler.removeCallbacks(updateSeekBarRunnable) // Остановите обновление SeekBar
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

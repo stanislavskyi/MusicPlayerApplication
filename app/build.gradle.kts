@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+
+    id("kotlin-parcelize")
 }
 
 android {
@@ -86,5 +88,18 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-inappmessaging-display:21.0.0")
     implementation("com.google.firebase:firebase-analytics:22.1.2")
+
+
+    val media3_version = "1.4.1"
+
+    // For media playback using ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:$media3_version")
+
+    implementation("androidx.media3:media3-session:$media3_version")
+
+    implementation("androidx.media3:media3-ui:$media3_version")
+    implementation("androidx.media3:media3-common:$media3_version")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 }
