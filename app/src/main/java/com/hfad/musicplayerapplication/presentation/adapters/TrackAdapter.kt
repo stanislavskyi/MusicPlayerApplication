@@ -18,10 +18,15 @@ class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF
         return TrackViewHolder(view)
     }
 
+    var onCharterTrackItemClickListener: ((Track) -> Unit)? = null
+
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = getItem(position)
-        if (track != null) {
+        track?.let {
             holder.bind(track)
+            holder.itemView.setOnClickListener {
+                onCharterTrackItemClickListener?.invoke(track)
+            }
         }
     }
 

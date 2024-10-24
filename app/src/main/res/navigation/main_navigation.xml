@@ -19,8 +19,11 @@
         android:id="@+id/charterFragment"
         android:name="com.hfad.musicplayerapplication.presentation.screens.CharterFragment"
         android:label="fragment_charter"
-        tools:layout="@layout/fragment_charter" />
-
+        tools:layout="@layout/fragment_charter" >
+        <action
+            android:id="@+id/action_charterFragment_to_musicPlayerFragment"
+            app:destination="@id/musicPlayerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/premiumFragment"
@@ -68,8 +71,6 @@
             android:name="title"
             app:argType="string" />
 
-
-
     </fragment>
 
     <fragment
@@ -77,5 +78,15 @@
         android:name="com.hfad.musicplayerapplication.presentation.screens.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/miniPlayerFragment"
+        android:name="com.hfad.musicplayerapplication.presentation.services.MiniPlayerFragment"
+        android:label="mini_player"
+        tools:layout="@layout/mini_player" >
+        <action
+            android:id="@+id/action_miniPlayerFragment_to_musicPlayerFragment"
+            app:destination="@id/musicPlayerFragment" />
+    </fragment>
 
 </navigation>

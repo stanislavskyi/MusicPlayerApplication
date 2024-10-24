@@ -12,6 +12,6 @@ class TrackMapper @Inject constructor(){
         link = dto.link,
         preview = dto.preview,
         md5_image = dto.md5_image,
-        cover_xl = dto.album.cover_xl
+        cover_xl = dto.album.cover_small
     )
 }
