@@ -49,7 +49,7 @@ class TrackAdapter : PagingDataAdapter<Track, TrackAdapter.TrackViewHolder>(DIFF
 
         fun bind(trackDto: Track) {
             title.text = trackDto.title
-            duration.text = trackDto.title
+            duration.text = trackDto.artist
             Picasso.get().load("https://e-cdns-images.dzcdn.net/images/cover/${trackDto.md5_image}/250x250.jpg").into(preview)
         }
     }

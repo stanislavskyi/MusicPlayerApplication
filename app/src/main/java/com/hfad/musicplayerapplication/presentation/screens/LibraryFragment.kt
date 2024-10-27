@@ -1,5 +1,6 @@
 package com.hfad.musicplayerapplication.presentation.screens
 
+import android.content.ComponentName
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
@@ -16,10 +17,13 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.media3.session.MediaController
+import androidx.media3.session.SessionToken
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.common.util.concurrent.MoreExecutors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -27,9 +31,11 @@ import com.google.firebase.storage.ktx.storage
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.databinding.FragmentLibraryBinding
 import com.hfad.musicplayerapplication.domain.entity.Audio
+import com.hfad.musicplayerapplication.domain.entity.Track
 import com.hfad.musicplayerapplication.presentation.BottomSheetListener
 import com.hfad.musicplayerapplication.presentation.ModalBottomSheet
 import com.hfad.musicplayerapplication.presentation.adapters.MusicAdapter
+import com.hfad.musicplayerapplication.presentation.services.MusicPlayerService
 
 class LibraryFragment : Fragment(), BottomSheetListener {
 
@@ -54,6 +60,23 @@ class LibraryFragment : Fragment(), BottomSheetListener {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        val componentName = ComponentName(requireContext(), MusicPlayerService::class.java)
+        val sessionToken = SessionToken(requireContext(), componentName)
+
+        val controllerFuture = MediaController.Builder(requireContext(), sessionToken).buildAsync()
+        controllerFuture.addListener(
+            {
+
+                //val controller = controllerFuture.get()
+
+
+            },
+            MoreExecutors.directExecutor()
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -102,9 +125,26 @@ class LibraryFragment : Fragment(), BottomSheetListener {
     private fun onItemClicked(item: Audio) {
         if (item.uri != null){
             Log.d("MAIN_TAG", "${item.imageLong}, ${item.uri}, ${item.title}")
-            val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri, bitmap = item.imageLong, title = item.title!!)
-            findNavController().navigate(action)
+
+            val track = Track(
+                id = 1,
+                title = "",
+                duration = 1,
+                link = "",
+                preview = "",
+                md5_image = "",
+                cover_xl = "",
+                artist = "",
+                uri = item.uri
+            )
+
+//            val action = LibraryFragmentDirections.actionLibraryFragmentToMusicPlayerFragment(mp3 = item.uri) //, bitmap = item.imageLong, title = item.title!!)
+//            findNavController().navigate(action)
+            val intent = MusicPlayerService.newIntent(requireContext(), track)
+            requireContext().startService(intent)
         }
+
+
     }
 
     override fun onDestroyView() {
