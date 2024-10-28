@@ -7,5 +7,6 @@ data class TrackDto(
     val link: String,
     val preview: String,
     val md5_image: String,
-    val album: Album
+    val album: Album,
+    val artist: ArtistDto
 )

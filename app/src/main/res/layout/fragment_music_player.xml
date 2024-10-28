@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".presentation.screens.MusicPlayerFragment">
+    android:id="@+id/layout_fragment_music_player"
+    tools:context=".presentation.screens.MusicPlayerFragment"
+
+    >
 
     <!-- Обложка альбома -->
     <com.google.android.material.card.MaterialCardView
@@ -13,9 +16,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-
-
-        app:layout_constraintBottom_toTopOf="@+id/songTitle"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +37,8 @@
         android:text="Song Title"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/artistName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +51,9 @@
         android:layout_height="wrap_content"
         android:text="Artist Name"
         android:textSize="16sp"
+        android:layout_marginTop="8dp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/songTitle" />
@@ -63,7 +66,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/artistName" />
+        app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
     <!-- Текущее время трека -->
     <TextView
@@ -145,12 +148,11 @@
         android:id="@+id/imageButtonGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:background="?attr/selectableItemBackground"
         android:src="@drawable/group_20px"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintStart_toEndOf="@+id/artistName"
-        app:layout_constraintTop_toBottomOf="@+id/songTitle" />
+        app:layout_constraintTop_toTopOf="@+id/artistName" />
 
     <!-- Кнопка предыдущего трека -->
 

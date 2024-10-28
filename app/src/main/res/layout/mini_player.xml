@@ -9,18 +9,23 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
     android:clickable="true"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+
+
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <!-- Обложка альбома -->
             <ImageView
@@ -45,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="Track Title"
                     android:textSize="14sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:maxLines="1"
                     android:ellipsize="end" />
 
@@ -64,11 +69,23 @@
             <!-- Кнопки управления -->
             <ImageButton
                 android:id="@+id/play_pause_button"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/play_arrow_48px"
+                android:src="@drawable/play_arrow_24px_player"
+                android:visibility="gone"
                 android:contentDescription="Play/Pause" />
+
+            <ImageButton
+                android:id="@+id/pause_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/pause_24px"
+                android:contentDescription="Play/Pause" />
+
         </LinearLayout>
 
         <!-- Прогресс трека -->
@@ -78,7 +95,7 @@
             android:id="@+id/track_progress"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

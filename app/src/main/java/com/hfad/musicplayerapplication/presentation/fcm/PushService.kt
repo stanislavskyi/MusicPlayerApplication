@@ -26,6 +26,7 @@ class PushService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         remoteMessage.notification?.let { notification ->
+            Log.d("MY_TAG", "$notification")
             val title = notification.title ?: "Default title"
             val body = notification.body ?: "Default body"
             showHandsUpNotification(title, body)

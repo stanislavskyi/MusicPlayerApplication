@@ -156,8 +156,8 @@ class HomeFragment : Fragment() {
 
                     val action = HomeFragmentDirections.actionHomeFragmentToMusicPlayerFragment(
                         mp3 = musicUrl.toUri(),
-                        title = "null",
-                        bitmap = null
+//                        title = "null",
+//                        bitmap = null
                     )
                     findNavController().navigate(action)
 

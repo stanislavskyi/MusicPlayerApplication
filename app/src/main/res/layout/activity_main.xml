@@ -33,6 +33,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/main_navigation"
         app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         android:layout_weight="1"
         app:defaultNavHost="true">
 
