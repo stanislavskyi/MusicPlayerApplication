@@ -1,0 +1,12 @@
+<!-- res/menu/popup_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/lang_item_1"
+        android:title="Русский"
+        android:icon="@drawable/russia" />
+
+    <item
+        android:id="@+id/lang_item_2"
+        android:title="Українська"
+        android:icon="@drawable/ukraine" />
+</menu>

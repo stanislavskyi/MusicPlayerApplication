@@ -48,6 +48,7 @@
             </intent-filter>
         </service>
 
+        <receiver android:name=".presentation.broadcast.CancelNotificationReceiver"/>
 
         <activity
             android:name=".presentation.MainActivity"
