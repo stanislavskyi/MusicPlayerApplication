@@ -41,7 +41,6 @@ import com.hfad.musicplayerapplication.presentation.fcm.PushService.Companion
 
 class HomeFragment : Fragment() {
 
-    private var mediaPlayer: MediaPlayer? = null
     private var currentMusicUrl: String? = null  // Чтобы отслеживать уже проигранную музыку
 
     override fun onCreateView(
@@ -82,62 +81,62 @@ class HomeFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         //listenMusicFromFirebase(userId.toString())
 
-        val buttonNotification: Button = view.findViewById(R.id.buttonNotificationService)
-        buttonNotification.setOnClickListener {
-            checkNotificationPermission()
-        }
+//        val buttonNotification: Button = view.findViewById(R.id.buttonNotificationService)
+//        buttonNotification.setOnClickListener {
+//            checkNotificationPermission()
+//        }
     }
 
-    val openRequestPermission =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            if (it) {
-                showHandsUpNotification()
-            }
-        }
+//    val openRequestPermission =
+//        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+//            if (it) {
+//                showHandsUpNotification()
+//            }
+//        }
 
-    private fun checkNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                openRequestPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-            } else {
-                showHandsUpNotification()
-            }
-        } else {
-            showHandsUpNotification()
-        }
-    }
+//    private fun checkNotificationPermission() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            if (requireContext().checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//                openRequestPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+//            } else {
+//                showHandsUpNotification()
+//            }
+//        } else {
+//            showHandsUpNotification()
+//        }
+//    }
 
-    private fun showHandsUpNotification() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        } else {
-            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-
-        val notificationManager =
-            requireContext().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Channel Name",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle("Заголовок уведомления")
-            .setContentText("Текст уведомления")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
-            .setFullScreenIntent(pendingIntent, true)
-
-
-        notificationManager.notify(6666, builder.build())
-    }
+//    private fun showHandsUpNotification() {
+//        val intent = Intent(requireContext(), MainActivity::class.java)
+//        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+//        } else {
+//            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//        }
+//
+//        val notificationManager =
+//            requireContext().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val channel = NotificationChannel(
+//                CHANNEL_ID,
+//                "Channel Name",
+//                NotificationManager.IMPORTANCE_HIGH
+//            )
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//
+//        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+//            .setSmallIcon(R.drawable.ic_launcher_background)
+//            .setContentTitle("Заголовок уведомления")
+//            .setContentText("Текст уведомления")
+//            .setPriority(NotificationCompat.PRIORITY_HIGH)
+//            .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
+//            .setFullScreenIntent(pendingIntent, true)
+//
+//
+//        notificationManager.notify(6666, builder.build())
+//    }
 
     private fun listenMusicFromFirebase(userId: String) {
 
@@ -165,28 +164,6 @@ class HomeFragment : Fragment() {
 
             }
 
-    }
-
-    private fun playMusic(musicUrl: String) {
-        mediaPlayer?.release()  // Освобождаем предыдущий MediaPlayer, если он уже воспроизводил музыку
-
-        mediaPlayer = MediaPlayer().apply {
-            setDataSource(musicUrl)
-            prepare()
-            start()
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mediaPlayer?.release()
-        mediaPlayer = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mediaPlayer?.release()
-        mediaPlayer = null
     }
 
     companion object {

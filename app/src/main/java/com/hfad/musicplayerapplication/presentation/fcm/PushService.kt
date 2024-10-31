@@ -13,6 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.hfad.musicplayerapplication.R
 import com.hfad.musicplayerapplication.presentation.MainActivity
+import com.hfad.musicplayerapplication.presentation.broadcast.CancelNotificationReceiver
 import com.hfad.musicplayerapplication.presentation.screens.HomeFragment
 import com.hfad.musicplayerapplication.presentation.screens.HomeFragment.Companion
 
@@ -26,7 +27,6 @@ class PushService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         remoteMessage.notification?.let { notification ->
-            Log.d("MY_TAG", "$notification")
             val title = notification.title ?: "Default title"
             val body = notification.body ?: "Default body"
             showHandsUpNotification(title, body)
@@ -35,6 +35,7 @@ class PushService : FirebaseMessagingService() {
 
     private fun showHandsUpNotification(title: String, body: String) {
         val intent = Intent(this, MainActivity::class.java)
+
         val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getActivity(
                 this,
@@ -50,6 +51,31 @@ class PushService : FirebaseMessagingService() {
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
         }
+
+//        val actionIntent = Intent(this, MainActivity::class.java).apply {
+//            action = "ACTION_OPEN"
+//        }
+
+        val actionIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("open_fragment", "MusicPlayerFragment")
+        }
+
+        val actionPendingIntent = PendingIntent.getActivity(
+            this,
+            1,
+            actionIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+
+        val dismissIntent = Intent(this, CancelNotificationReceiver::class.java)
+        val dismissPendingIntent = PendingIntent.getBroadcast(
+            this,
+            2,
+            dismissIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
 
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -68,13 +94,25 @@ class PushService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_RECOMMENDATION)
             .setFullScreenIntent(pendingIntent, true)
+            .addAction(
+                0, // Иконка для кнопки
+                "Принять",           // Текст кнопки
+                actionPendingIntent  // PendingIntent для кнопки действия
+            )
+            .addAction(
+                0,
+                "Отказаться",
+                dismissPendingIntent
+            )
             .build()
 
-        notificationManager.notify(6666, builder)
+        notificationManager.notify(NOTIFICATION_ID, builder)
     }
 
     companion object {
         private const val CHANNEL_ID_HEADS_UP_NOTIFICATION = "channel_id_heads_up_notification"
         private const val CHANNEL_NAME_HEADS_UP_NOTIFICATION = "channel_name_heads_up_notification"
+
+        const val NOTIFICATION_ID = 6666
     }
 }
